@@ -1,0 +1,141 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class LoanManagementSystem {
+    public static void main(String[] args) {
+        // Create the JFrame
+        JFrame loanManagementSystem = new JFrame("Loan Management System");
+        loanManagementSystem.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        loanManagementSystem.setSize(600, 500);
+        loanManagementSystem.setLayout(null); // Set layout to null for custom positioning
+
+        // Create a JPanel with the desired background color
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(178, 255, 191)); // Light green background
+        panel.setBounds(50, 50, 500, 400); // Set bounds for the panel
+        panel.setLayout(null); // Set panel layout to null for custom positioning
+        loanManagementSystem.add(panel); // Add panel to the frame
+
+        // Title Label
+        JLabel titleLabel = new JLabel("LOAN MANAGEMENT SYSTEM", SwingConstants.CENTER);
+        titleLabel.setBounds(0, 10, 500, 50);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 30));
+        panel.add(titleLabel); // Add title label to the panel
+
+        // Loan Amount Label and Text Field
+        JLabel loanAmountLabel = new JLabel("LOAN AMOUNT:");
+        loanAmountLabel.setBounds(50, 80, 150, 30);
+        loanAmountLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        panel.add(loanAmountLabel);
+
+        JTextField loanAmountTextField = new JTextField();
+        loanAmountTextField.setBounds(200, 80, 200, 30);
+        panel.add(loanAmountTextField);
+
+        // Loan Period Label and Text Field
+        JLabel loanPeriodLabel = new JLabel("LOAN PERIOD:");
+        loanPeriodLabel.setBounds(50, 120, 150, 30);
+        loanPeriodLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        panel.add(loanPeriodLabel);
+
+        JTextField loanPeriodTextField = new JTextField();
+        loanPeriodTextField.setBounds(200, 120, 200, 30);
+        panel.add(loanPeriodTextField);
+
+        // Interest Rate Label and Text Field
+        JLabel loanInterestRateLabel = new JLabel("INTEREST RATE IN %:");
+        loanInterestRateLabel.setBounds(50, 160, 150, 30);
+        loanInterestRateLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        panel.add(loanInterestRateLabel);
+
+        JTextField loanInterestRateTextField = new JTextField();
+        loanInterestRateTextField.setBounds(200, 160, 200, 30);
+        panel.add(loanInterestRateTextField);
+
+        // Processing Fee Label and Text Field
+        JLabel processingFeeLabel = new JLabel("PROCESSING FEE:");
+        processingFeeLabel.setBounds(50, 200, 150, 30);
+        processingFeeLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        panel.add(processingFeeLabel);
+
+        JTextField processingFeeTextField = new JTextField();
+        processingFeeTextField.setBounds(200, 200, 200, 30);
+        panel.add(processingFeeTextField);
+
+        // Calculate Total Amount Button and Result Field
+        JButton totalAmountButton = new JButton("CALCULATE TOTAL AMOUNT TO BE PAID");
+        totalAmountButton.setBounds(50, 250, 300, 30);
+        panel.add(totalAmountButton);
+
+        JTextField totalAmountTextField = new JTextField();
+        totalAmountTextField.setBounds(360, 250, 100, 30);
+        panel.add(totalAmountTextField);
+
+        // Calculate Amount to Be Paid Per Month Button and Result Field
+        JButton amountToBePaidButton = new JButton("CALCULATE AMOUNT TO BE PAID PER MONTH");
+        amountToBePaidButton.setBounds(50, 300, 300, 30);
+        panel.add(amountToBePaidButton);
+
+        JTextField amountToBePaidTextField = new JTextField();
+        amountToBePaidTextField.setBounds(360, 300, 100, 30);
+        panel.add(amountToBePaidTextField);
+
+        // Action Listener for total amount calculation
+        totalAmountButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // Get user input
+                    double loanAmount = Double.parseDouble(loanAmountTextField.getText());
+                    double loanPeriod = Double.parseDouble(loanPeriodTextField.getText()); // in years
+                    double interestRate = Double.parseDouble(loanInterestRateTextField.getText()); // in %
+                    double processingFee = Double.parseDouble(processingFeeTextField.getText());
+
+                    // Calculate interest
+                    double interest = (loanAmount * interestRate * loanPeriod) / 100;
+
+                    // Total amount to be paid
+                    double totalAmount = loanAmount + interest + processingFee;
+                    totalAmountTextField.setText(String.format("%.2f", totalAmount));
+                } catch (NumberFormatException ex) {
+                    totalAmountTextField.setText("Error");
+                }
+            }
+        });
+
+        // Action Listener for monthly payment calculation
+        amountToBePaidButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // Get user input
+                    double loanAmount = Double.parseDouble(loanAmountTextField.getText());
+                    double loanPeriod = Double.parseDouble(loanPeriodTextField.getText()); // in years
+                    double interestRate = Double.parseDouble(loanInterestRateTextField.getText()); // in %
+                    double processingFee = Double.parseDouble(processingFeeTextField.getText());
+
+                    // Calculate interest
+                    double interest = (loanAmount * interestRate * loanPeriod) / 100;
+
+                    // Total amount to be paid
+                    double totalAmount = loanAmount + interest + processingFee;
+
+                    // Convert loan period to months
+                    double loanPeriodInMonths = loanPeriod * 12;
+
+                    // Calculate monthly payment
+                    double monthlyPayment = totalAmount / loanPeriodInMonths;
+
+                    amountToBePaidTextField.setText(String.format("%.2f", monthlyPayment));
+                } catch (NumberFormatException ex) {
+                    amountToBePaidTextField.setText("Error");
+                }
+            }
+        });
+
+        // Make the window visible
+        loanManagementSystem.setVisible(true);
+    }
+}

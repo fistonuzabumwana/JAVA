@@ -1,11 +1,10 @@
 package Exercise;
-import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class ButtonExample {
     public static void main(String[] args) {
-        JFrame f = new JFrame("Button Example");
+        JFrame f2 = new JFrame("Button Example");
 
         JTextField tf = new JTextField();
         tf.setBounds(50,50,150,20);
@@ -19,11 +18,11 @@ public class ButtonExample {
             }
         });
 
-        f.add(b);
-        f.add(tf);
+        f2.add(b);
+        f2.add(tf);
 
-        f.setVisible(true);
-        f.setLayout(null);
-        f.setSize(400,400);
+        f2.setVisible(true);
+        f2.setLayout(null);
+        f2.setSize(400,400);
     }
 }

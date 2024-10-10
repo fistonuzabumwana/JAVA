@@ -1,6 +1,5 @@
 package Exercise;
 import javax.swing.*;
-import java.awt.event.*;
 
 public class evening2 {
     public static void main(String[] args) {

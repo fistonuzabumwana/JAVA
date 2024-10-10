@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class tshoot {
     public static void main(String[] args) {
-        JFrame f = new JFrame("Button Example");
+        JFrame f1 = new JFrame("Button Example");
 
         JTextField tf = new JTextField();
         tf.setBounds(50, 50, 150, 20);
@@ -19,13 +19,13 @@ public class tshoot {
             }
         });
 
-        f.add(b);
-        f.add(tf);
+        f1.add(b);
+        f1.add(tf);
 
 
-        f.setSize(400, 400);
-        f.setLayout(null);
-        f.setVisible(true);
+        f1.setSize(400, 400);
+        f1.setLayout(null);
+        f1.setVisible(true);
 
 
     }
